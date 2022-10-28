@@ -84,15 +84,22 @@ char *get_next_line(int fd)
 	(esto sera fuera de la función) hasta encontrar el fin del archivo
 	y es en ese punto donde debe devolver todo, incluyendo el \n del final */
 
+	/*
+		Verificar si es la primera vez que se lee, de no ser así tener en cuenta que lo ya leido debe ser 
+		omitido o borrado.
+
+		Tener en cuenta las funciones join, dub y substr para el ejercicio.
+		Nuestra funcion ejecuta linea a linea, es decir hay que tener en cuenta los \n y los 0.
+		Al finalizar el archivo leido debemos reiniciar la static.
+		
+	*/
 	static *char buff;
 	size_t size;
-	ssize_t = cnt;
+	size_t = cnt;
 	
 	buff = (char *)malloc(sizeof(char));
 	if (buff == 0)
 		return(0);
 	cnt = read(fd, buff, size);
-
 	
-
-}i
+}
