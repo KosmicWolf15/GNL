@@ -11,19 +11,15 @@
 /* ************************************************************************** */
 
  #include"get_next_line.h"
-/*
+
 char	*get_next_line(int fd);
 char	*reading(int fd, char *buff);
 char	*new_line(char *buff, char *str);
 
 char	*new_line(char *buff, char *str)
 {
-	char	*temp;
-	int		start;
-
-	start = ft_strnstr(str, buff, BUFFER_SIZE);
-	temp = ft_substr(str, start, BUFFER_SIZE);
-	return (temp);
+	
+	
 }
 
 char	*reading(int fd, char *buff)
@@ -36,7 +32,7 @@ char	*reading(int fd, char *buff)
 	if (!rbuff)
 		return (NULL);
 	while (nbytes > 0)
-	{
+	{ 
 		nbytes = read(fd, rbuff, BUFFER_SIZE);
 		
 		if (nbytes == -1)
@@ -44,12 +40,12 @@ char	*reading(int fd, char *buff)
 			free(rbuff);
 			return (NULL);
 		}
-		buff = ft_strjoin(buff, rbuff);
-		free(rbuff);
-		if (ft_strrchr(buff, '\n'))
+		rbuff = ft_strjoin(buff, rbuff);
+		if (ft_strrchr(rbuff, '\n'))
 			break ;
 	}
-	return (buff);
+	return (rbuff);
+	free(rbuff);
 }
 
 char	*get_next_line(int fd)
@@ -65,7 +61,7 @@ char	*get_next_line(int fd)
 	str = new_line(buff, str);
 	return (str);
 }
-*/
+
 int main()
 {
 	FILE *fp;
@@ -80,7 +76,7 @@ int main()
 	{
 		while (feof(fp) == 0)
 		{
-			fgets(linea, 100, fp);
+			get_next_line(1);
 			printf("%s", linea);
 		}
 	}
