@@ -5,21 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgarcia- <pgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:21:35 by pgarcia-          #+#    #+#             */
-/*   Updated: 2022/11/02 10:33:58 by pgarcia-         ###   ########.fr       */
+/*   Created: 2022/02/16 18:15:06 by pgarcia-          #+#    #+#             */
+/*   Updated: 2022/02/16 18:15:06 by pgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE
-# define FT_GET_NEXT_LINE
-#ifndef	BUFFER_SIZE
-# define BUFFER_SIZE 42
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#ifndef GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
+# define BUFFER_SIZE 100
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
+char	*reading(int fd, char *buff);
+void	ft_bzero(void *str, size_t size);
+void	*ft_calloc(size_t items, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strnstr(const char *str, const char *substr, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *str);
+char	*ft_strrchr(const char *s, int c);
+
 
 #endif

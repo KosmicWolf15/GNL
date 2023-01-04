@@ -5,33 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgarcia- <pgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:21:31 by pgarcia-          #+#    #+#             */
-/*   Updated: 2022/11/02 18:01:50 by pgarcia-         ###   ########.fr       */
+/*   Created: 2022/02/16 18:14:34 by pgarcia-          #+#    #+#             */
+/*   Updated: 2022/02/16 18:14:34 by pgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+ #include"get_next_line.h"
+/*
+char	*get_next_line(int fd);
+char	*reading(int fd, char *buff);
+char	*new_line(char *buff, char *str);
 
-char *get_next_line(int fd)
+char	*new_line(char *buff, char *str)
 {
-	static *char buff;  /*Almacenamos aquí todo lo leido hasta el momento*/
-	size_t size;		/*Numero de bytes que leeremos*/
-	size_t = cnt;		/*Contador donde guardaremos el resultado de read
-						ya que read devuelve el numero de caracteres
-						REALMENTE leidos, ya que nosotros podemos 
-						indicarle que lea 100 pero si hay 30 solo leera esos*/
+	char	*temp;
+	int		start;
+
+	start = ft_strnstr(str, buff, BUFFER_SIZE);
+	temp = ft_substr(str, start, BUFFER_SIZE);
+	return (temp);
+}
+
+char	*reading(int fd, char *buff)
+{
+	char	*rbuff;
+	int		nbytes;
+
+	nbytes = 1;
+	rbuff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!rbuff)
+		return (NULL);
+	while (nbytes > 0)
+	{
+		nbytes = read(fd, rbuff, BUFFER_SIZE);
+		
+		if (nbytes == -1)
+		{
+			free(rbuff);
+			return (NULL);
+		}
+		buff = ft_strjoin(buff, rbuff);
+		free(rbuff);
+		if (ft_strrchr(buff, '\n'))
+			break ;
+	}
+	return (buff);
+}
+
+char	*get_next_line(int fd)
+{
+	static char		*buff;
+	char			*str;
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return(NULL);
-	buff = (char *)malloc(sizeof(char));
-	if (buff == 0)
-		return(0);
-		
-	cnt = read(fd, buff, size);
+		return (NULL);
+	str = reading(fd, buff);
+	if (!buff)
+		return (NULL);
+	str = new_line(buff, str);
+	return (str);
+}
+*/
+int main()
+{
+	FILE *fp;
+	char linea[100];
 
-		if (buff != 0)
+	fp = fopen("archivo.txt", "r");
+	if (fp == NULL)
+	{
+		return (0);
+	}
+	else
+	{
+		while (feof(fp) == 0)
 		{
-			
+			fgets(linea, 100, fp);
+			printf("%s", linea);
 		}
-	return (buff);
+	}
+	fclose(fp);
+	return (0);
 }
